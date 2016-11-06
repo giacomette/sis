@@ -1,87 +1,86 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
-  'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app'])
+    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app'])
 
-  .constant('api', {
-    url: 'http://localhost/sis/api/public/api/'
-  })
 
-  .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
-    $stateProvider
-      .state('home', {
-        url: '',
-        templateUrl: 'app/views/main.html',
-        controller: 'MainController',
-        controllerAs: 'vm',
-        abstract: true
-      })
-      .state('home.dashboard', {
-        url: '/dashboard',
-        templateUrl: 'app/views/dashboard.html',
-        data: {
-          title: 'Dashboard'
-        }
-      })
-      .state('home.consulta', {
-        url: '/consulta',
-        templateUrl: 'app/views/consulta.html',
-        controller: 'ConsultaController',
-        controllerAs: 'vm',
-        data: {
-          title: 'Agendar Consulta'
-        }
-      })
-      .state('home.table', {
-        url: '/table',
-        controller: 'TableController',
-        controllerAs: 'vm',
-        templateUrl: 'app/views/table.html',
-        data: {
-          title: 'Table'
-        }
-      });
+    
 
-    $urlRouterProvider.otherwise('/dashboard');
+    /*
+     * Configuração da url da api
+     */
+    .constant('api', {
+        url: 'http://localhost/sis/api/public/api/'
+    })
 
-    $mdThemingProvider
-      .theme('default')
-        .primaryPalette('grey', {
-          'default': '600'
-        })
-        .accentPalette('teal', {
-          'default': '500'
-        })
-        .warnPalette('defaultPrimary');
+    .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $httpProvider) {
 
-    $mdThemingProvider.theme('dark', 'default')
-      .primaryPalette('defaultPrimary')
-      .dark();
+        $httpProvider.defaults.headers.common = {};
 
-    $mdThemingProvider.theme('grey', 'default')
-      .primaryPalette('grey');
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 
-    $mdThemingProvider.theme('custom', 'default')
-      .primaryPalette('defaultPrimary', {
-        'hue-1': '50'
+        $stateProvider
+            .state('app', {
+                url: '',
+                templateUrl: 'app/views/main.html',
+                controller: 'MainController',
+                controllerAs: 'vm',
+                abstract: true
+            })
+            .state('app.dashboard', {
+                url: '/dashboard',
+                templateUrl: 'app/views/dashboard.html',
+                data: {
+                    title: 'Dashboard'
+                }
+            })
+            .state('app.consulta', {
+                url: '/consulta',
+                templateUrl: 'app/views/consulta.html',
+                controller: 'ConsultaController',
+                controllerAs: 'vm',
+                data: {
+                    title: 'Consulta'
+                }
+            })
+            .state('app.consulta_criar', {
+                url: '/consulta/criar',
+                templateUrl: 'app/views/consulta-criar.html',
+                controller: 'CriarConsultaController',
+                controllerAs: 'vm',
+                data: {
+                    title: 'Agendamento de Consulta'
+                }
+            })
+            .state('app.consulta_editar', {
+                url: '/consulta/:id',
+                templateUrl: 'app/views/consulta-criar.html',
+                controller: 'EditarConsultaController',
+                controllerAs: 'vm',
+                data: {
+                    title: 'Agendamento de Consulta'
+                }
+            })
+            .state('app.campanhas', {
+                url: '/campanhas',
+                controller: 'CampanhasController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/campanhas.html',
+                data: {
+                    title: 'Campanhas e Prevenção'
+                }
+            })
+            .state('app.guiaCrianca', {
+                url: '/guia-crianca',
+                controller: 'GuiaCriancaController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/guia-crianca.html',
+                data: {
+                    title: 'Guia da Criança'
+                }
+            });
+
+        $urlRouterProvider.otherwise('/dashboard');
     });
-
-    $mdThemingProvider.definePalette('defaultPrimary', {
-      '50':  '#FFFFFF',
-      '100': 'rgb(255, 198, 197)',
-      '200': '#1976D2',
-      '300': '#1976D2',
-      '400': '#1976D2',
-      '500': '#1976D2',
-      '600': '#1976D2',
-      '700': '#1976D2',
-      '800': '#1976D2',
-      '900': '#1976D2',
-      'A100': '#1976D2',
-      'A200': '#1976D2',
-      'A400': '#1976D2',
-      'A700': '#1976D2'
-    });
-
-    $mdIconProvider.icon('user', 'assets/images/user.svg', 64);
-  });

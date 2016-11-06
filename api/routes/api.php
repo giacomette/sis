@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");  
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
 use Illuminate\Http\Request;
 use App\Models\Expediente;
@@ -16,7 +19,9 @@ use App\Models\Expediente;
 
 // Route::get('/expediente', function (Request $request) { });
 
+Route::resource('atividade', 'Api\AtividadeController');
 Route::resource('expediente', 'Api\ExpedienteController');
 Route::resource('consulta', 'Api\ConsultaController');
 Route::resource('unidade-saude', 'Api\UnidadeSaudeController');
 Route::resource('tipo-medico', 'Api\TipoMedicoController');
+Route::resource('campanhas', 'Api\CampanhasController');

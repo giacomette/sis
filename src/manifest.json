@@ -1,0 +1,9 @@
+{
+  "short_name": "SIS",
+  "name": "SIS",
+  "start_url": "/",
+  "background_color": "#FAFAFA",
+  "theme_color": "#0a56a0",
+  "display": "standalone",
+  "orientation": "portrait"
+}

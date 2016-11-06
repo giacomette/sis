@@ -1,0 +1,23 @@
+<!--  md-theme="dark" -->
+
+<h2 style='font-weight: 300'>Campanhas e Prevenções</h2>
+
+<div layout-md="column">
+
+    <div flex='50' ng-repeat='item in vm.campanhas track by $index' style='float: left' class="col-xs-6">
+        <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{item.titulo}}</span>
+                    <span class="md-subhead">{{item.descricao}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <img src="{{item.imagem}}" style='width: 120px; height: 150px'>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click='vm.goLink(item.link)' class="md-primary md-raised">ver mais</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

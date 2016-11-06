@@ -1,58 +1,45 @@
-# Angular Material Dashboard
+# SISP
 
-[![Join the chat at https://gitter.im/flatlogic/angular-material-dashboard](https://badges.gitter.im/flatlogic/angular-material-dashboard.svg)](https://gitter.im/flatlogic/angular-material-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+ 
+## Projeto
 
-Responsive Angular admin dashboard with material design based on
-[Angular Material](https://github.com/angular/material).
+Resumo:
 
-![promo-amd](src/assets/images/promo-amd.png)
+    Nosso intuito é realizar agendamentos sem a necessidade do cidadão ir até uma unidade de saúde, onde o paciente preenche com a identificação do sus e confirma sua vaga. Há a realização de Guia Infantil, referente ao acompanhamento de vacinação que foram e serão tomadas. Como também campanhas referente à vários assuntos.
 
-Check out [DEMO](http://flatlogic.github.io/angular-material-dashboard/)
+Requisitos do Sistema:
 
-## Getting started
+    * NodeJS
+    * PHP
+    * Mysql
+    * Bower
+    * Composer PHP
 
-Clone project:
-
-    $ git clone https://github.com/flatlogic/angular-material-dashboard.git
-
-Install dependencies:
-
-    $ cd angular-material-dashboard
+Instalando:
+ 
     $ npm install
-
-Install gem 'sass'
-
-    $ gem install sass
+    $ bower install
     
-Run development web-server:
+    cd api/ $ composer install 
+
+Para executar:
 
     $ gulp serve
 
-## Features
+## Tecnologias
 
 * AngularJS
 * Angular UI Router
 * Angular Material
-* Sass styles
-* Gulp build
-* Stylish, clean, responsive layout with original design
-* BrowserSync for the ease of development
+* Sass
+* Gulp build 
+* Laravel 
 
-## Project structure and credits
 
-Project structure based on [gulp-angular yeoman generator](https://github.com/Swiip/generator-gulp-angular).
-If you have any questions about the build or project structure please check out their documentation.
-
-UI components built with [Angular Material](https://material.angularjs.org/).
-
-Design by [flatlogic.com](http://flatlogic.com/)
-
-## Deploy to Github pages  
+## Gerando uma versão de produção  
   
     $ gulp build
     $ gulp deploy
 
-## Community
-- [Tweet about it](https://twitter.com/intent/tweet?text=Angular%20Material%20Dashboard%20https://github.com/flatlogic/angular-material-dashboard%20via%20@flatlogicinc) to support revolution in classic paid templates market.
-- Follow [@flatlogicinc on Twitter](https://twitter.com/flatlogicinc).
-- Subscribe to Flatlogic newsletter at [flatlogic.com](http://flatlogic.com/)
+## Licença
+- Licença de código aberto e disponível ao usuário.

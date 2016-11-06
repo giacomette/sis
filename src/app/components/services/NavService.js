@@ -16,14 +16,19 @@
       },
       {
         name: 'Agendar Consulta',
-        icon: 'person',
+        icon: 'date_range',
         sref: '.consulta'
       },
-      // {
-      //   name: 'Table',
-      //   icon: 'view_module',
-      //   sref: '.table'
-      // }
+      {
+        name: 'Guia da Criança',
+        icon: 'person',
+        sref: '.guiaCrianca'
+      },
+      {
+        name: 'Campanhas/Prevenções',
+        icon: 'turned_in_not',
+        sref: '.campanhas'
+      }
     ];
 
     return {

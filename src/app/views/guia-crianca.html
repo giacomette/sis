@@ -1,0 +1,66 @@
+<h2 style='font-weight: 300'>Guia da Criança</h2>
+
+<md-content class="md-padding md-whiteframe-z1">
+
+    <form ng-submit='vm.buscar()'>
+
+        <md-input-container flex='70'>
+
+            <label> Número da Carteira do SUS </label>
+
+            <input type='text' size='50' ng-model='vm.numero_sus' required>
+
+        </md-input-container>
+
+        <md-input-container flex>
+            <md-button type="submit" style='margin-top: -13px' class="md-raised md-primary">Buscar</md-button>
+        </md-input-container>
+
+    </form>
+
+    <div ng-if='vm.atividades.length'>
+        <h2>
+            <span style='font-weight: normal'> Quadro de Acompanhamento de </span> {{vm.atividades[0].nome}} ( {{vm.getIdade(vm.atividades[0])}}
+            )
+        </h2>
+    </div>
+
+    <div ng-if='vm.atividades.length'>
+        <md-radio-group ng-model="vm.filtro">
+            <md-radio-button value="1" class="md-primary" style='float: left; margin-right: 10px; font-size: 13px'>Feitos</md-radio-button>
+            <md-radio-button value="0" class="md-primary" style='float: left; margin-right: 10px; font-size: 13px'>Pendências</md-radio-button>
+            <md-radio-button value="" class="md-primary" style='float: left; margin-right: 10px; font-size: 13px'>Todos</md-radio-button>
+        </md-radio-group>
+
+        <div style='float: right'>
+            <div>
+                <span style='width: 13px; height: 13px; margin-top: 2px; background: #f58f8f; display: inline-block'></span> Vácina em atraso
+            </div>
+        </div>
+    </div>
+
+    <table id="table" ng-if='vm.atividades.length'>
+        <thead>
+            <tr>
+                <th width="100px" align='left'>Idade</th>
+                <th align='left'>Vácina</th>
+                <th align='left'>Doses</th>
+                <th align='left'>Doenças que imuniza</th>
+                <th align='left'>Feito</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in vm.atividades | filter: { concluido : vm.filtro } track by $index" ng-class='{"danger": item.idade_pessoa >= item.idade && item.concluido != "1"}'>
+                <td>{{vm.parseIdade(item.idade)}}</td>
+                <td>{{item.atividade}}</td>
+                <td>{{item.doses}}</td>
+                <td>{{item.combate}}</td>
+                <td align='center'>
+                    <i class="material-icons" style='color: white; font-size: 19px; color: green' ng-if='!!item.concluido'>done</i>
+                    <div style='font-size: 13px'>{{vm.parseDate(item.data_concluido, "DD/MM/YYYY") || '---'}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</md-content>

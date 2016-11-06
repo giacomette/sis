@@ -1,0 +1,130 @@
+<!--  md-theme="dark" -->
+
+<h2 style='font-weight: 300'>Agendar Consulta</h2>
+
+<form name='formConsulta' class="md-whiteframe-z1" ng-submit='vm.salvar()'>
+
+    <md-content class="md-padding">
+
+        <div layout layout-sm="column">
+
+            <md-input-container flex='50'>
+
+                <p> Especialidade: </p>
+
+                <md-radio-group ng-model="vm.tipo_medico_id">
+
+                    <md-radio-button flex ng-value="item.id" required ng-repeat="item in vm.tiposMedicos track by $index">
+                        <span style='font-size: 13px'> {{item.nome}} </span>
+                    </md-radio-button>
+
+                </md-radio-group>
+
+            </md-input-container>
+
+        </div>
+
+    </md-content>
+
+    <div ng-show='!!vm.tipo_medico_id'>
+
+        <md-content class="md-padding">
+
+            <div layout-md="row" layout-sm="column" layout-xs="column">
+
+                <md-input-container flex='50' class="md-block">
+
+                    <label> Unidade de Saúde </label>
+
+                    <md-select ng-model="vm.consulta.unidade_saude_id" name='unidade' ng-change="vm.changeUnidade(); vm.consulta.expediente_id = ''"
+                        required>
+                        <md-option ng-repeat="item in vm.unidades track by $index" ng-value="item.id">
+                            {{item.nome}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="formConsulta.unidade.$error">
+                        <div ng-message-exp="['required']">
+                            Este campo é obrigatório.
+                        </div>
+                    </div>
+
+                </md-input-container>
+
+                <!--<md-input-container flex>
+                    <div ng-if='vm.consulta.unidade_saude_id' style='float: left'>
+                        <md-button ng-click='vm.verUnidade()' class="md-primary"> Ver informações sobre está unidade </md-button>
+                    </div>
+                </md-input-container>-->
+
+                <Br>
+
+                <md-input-container flex='50' class="md-block">
+
+                    <label> Data e Hora </label>
+
+                    <md-select ng-model="vm.consulta.expediente_id" name='expediente' ng-change="vm.changeExpediente()" ng-disabled="!vm.consulta.unidade_saude_id">
+                        <md-option ng-repeat="item in vm.expedientes track by $index" ng-value="item.id">
+                            {{vm.parseDate(item.data, "DD/MM/YYYY")}} ás {{vm.parseDate(item.data, "HH:mm")}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="formConsulta.expediente.$error">
+                        <div ng-message-exp="['required']">
+                            Este campo é obrigatório.
+                        </div>
+                    </div>
+
+                </md-input-container>
+
+                <Br>
+
+                <md-input-container flex='20' class="md-block">
+
+                    <label> Vagas Disponíveis </label>
+
+                    <input disabled="disabled" type="text" ng-value="vm.expediente.vaga">
+
+                </md-input-container>
+
+            </div>
+
+        </md-content>
+
+        <md-content class="md-padding">
+            <md-input-container class="md-block">
+                <label>Nome</label>
+                <input type="text" name="nome" ng-model="vm.consulta.nome" ng-required='true'>
+
+                <div ng-messages="formConsulta.nome.$error">
+                    <div ng-message-exp="['required']">
+                        Este campo é obrigatório.
+                    </div>
+                </div>
+            </md-input-container>
+        </md-content>
+
+        <md-content class="md-padding">
+
+            <md-input-container class="md-block" flex="30">
+                <label>Número da Carteira do SUS</label>
+                <input type="text" name="numero_sus" ng-model="vm.consulta.numero_sus" ng-required='true'>
+
+                <div ng-messages="formConsulta.numero_sus.$error">
+                    <div ng-message-exp="['required']">
+                        Este campo é obrigatório.
+                    </div>
+                </div>
+            </md-input-container>
+
+        </md-content>
+
+        <md-content>
+
+            <md-input-container>
+                <md-button type="submit" class="md-raised md-primary">Salvar</md-button>
+            </md-input-container>
+
+        </md-content>
+
+    </div>
+
+</form>

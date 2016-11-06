@@ -1,61 +1,57 @@
-
 <!--  md-theme="dark" -->
-<md-content class="md-padding" layout="row" layout-sm="column">
-    <md-input-container>
-        <label>Nome</label>
-        <input ng-model="vm.consulta.nome">
-    </md-input-container>
-    <md-input-container>
-        <label>Número da Carteira do SUS</label>
-        <input ng-model="vm.consulta.numero_sus" type="text" required>
-    </md-input-container>
-</md-content>
 
-<md-content class="md-padding">
-    <form name="userForm">
-        <div layout layout-sm="column">
-            <md-input-container flex="80">
-                <label>Company (Disabled)</label>
-                <input ng-model="vm.user.company" disabled>
-            </md-input-container>
-            <md-input-container flex>
-                <label>Submission Date</label>
-                <input type="date" ng-model="vm.user.submissionDate">
-            </md-input-container>
-        </div>
-        <div layout layout-sm="column">
-            <md-input-container flex>
-                <label>First Name</label>
-                <input ng-model="vm.user.firstName"
-                       placeholder="Placeholder text">
-            </md-input-container>
-            <md-input-container flex>
-                <label>Last Name</label>
-                <input ng-model="vm.user.lastName">
-            </md-input-container>
-        </div>
+<h2 style='font-weight: 300'>Consulta</h2>
+
+<md-content class="md-padding md-whiteframe-z1">
+
+    <div>
+
         <md-input-container flex>
-            <label>Address</label>
-            <input ng-model="vm.user.address">
+            <md-button ng-click='vm.criar()' class="md-raised md-warn">Criar</md-button>
         </md-input-container>
-        <div layout layout-sm="column">
-            <md-input-container flex>
-                <label>City</label>
-                <input ng-model="vm.user.city">
+
+        <form ng-submit='vm.buscar()' style='float: right'>
+
+            <md-input-container flex='70'>
+
+                <label> Número da Carteira do SUS </label>
+
+                <input type='text' size='50' ng-model='vm.numero_sus' required>
+
             </md-input-container>
+
             <md-input-container flex>
-                <label>State</label>
-                <input ng-model="user.state">
+                <md-button type="submit" style='margin-top: -13px' class="md-raised md-primary">Buscar</md-button>
             </md-input-container>
-            <md-input-container flex>
-                <label>Postal Code</label>
-                <input ng-model="vm.user.postalCode">
-            </md-input-container>
+
+        </form>
+
+        <div class="table-responsive-vertical " ng-show='vm.consultas.length'>
+
+            <table id="table" class="" >
+                <thead>
+                    <tr> 
+                        <th align='left'>Data</th>
+                        <th align='left'>Local</th>
+                        <th align='left'>Especialidade</th> 
+                        <th width='250px'></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.consultas track by $index">
+                        <td data-title="data">{{vm.parseDate(item.data, "DD/MM/YYYY")}} ás {{vm.parseDate(item.data, "HH:mm")}}</td>
+                        <td data-title="id">{{item.unidade_saude}}</td>
+                        <td data-title="id">{{item.tipo_medico}}</td>
+                        <td>
+                            <md-button class="md-raised md-primary" ng-click='vm.verUnidade(item)'>ver endereço</md-button>
+                            <md-button class="md-raised md-warn" ng-click='vm.editar(item.id)' ng-disabled="!!item.concluido">editar</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
-        <md-input-container flex>
-            <label>About us</label>
-            <textarea ng-model="vm.user.biography" columns="1"
-                      md-maxlength="150"></textarea>
-        </md-input-container>
-    </form>
+
+    </div>
+
 </md-content>

@@ -1,36 +1,70 @@
-<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2 md-sidenav-left">
+<style>
+    table {
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid #ddd;
+    }
+    table>tbody>tr>td,
+    table>thead>tr>th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #ddd;
+        padding: 8px;
+        border-bottom-width: 2px;
+    }
+    
+    table>tbody>tr:nth-of-type(odd) {
+        background-color: #efefef;
+    }
+    
+    table>tbody>tr.danger {
+        background: #f58f8f !important;
+    }
 
-    <md-toolbar md-theme="custom"class="md-hue-1 md-whiteframe-z2">
+    @media all and (max-width: 768px) {
+        .col-xs-6 {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
+</style>
+<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2 md-sidenav-left" style='max-width: 220px; background: #1976D2 !important'>
+
+    <md-toolbar md-theme="custom" class="md-hue-1 md-whiteframe-z2" style="background: #0a56a0 !important">
         <md-button layout="row" layout-align="center center" class="md-toolbar-tools md-warn">
-            <h1>SIS</h1>
+            <h1 style='color: white'>SISP</h1>
         </md-button>
     </md-toolbar>
 
-    <md-button ng-repeat-start="item in vm.menuItems" layout="column" layout-align="center center"
-                flex class="capitalize" ng-click="vm.selectItem(item)"
-                ui-sref-active="md-warn" ui-sref="{{item.sref}}">
-        <div hide-sm hide-md class="md-tile-content">
-            <i class="material-icons md-36">{{item.icon}}</i>
+    <md-button ng-repeat-start="item in vm.menuItems" class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="md-warn"
+        ui-sref="{{item.sref}}">
+
+        <div hide-sm hide-md class="md-tile-content" style='float:left; position: relative; top: 5px'>
+            <i class="material-icons" style='color: white; font-size: 19px'>{{item.icon}}</i>
         </div>
-        <div class="md-tile-content">
+        <div class="md-tile-content" style='color: white; float:left; top: 0px; left: 5px; position: relative; font-size: 12px'>
             {{item.name}}
         </div>
+
     </md-button>
 
-    <md-divider ng-repeat-end></md-divider> 
+    <md-divider ng-repeat-end></md-divider>
 
 </md-sidenav>
 
 <div layout="column" flex>
     <md-toolbar layout="row" layout-align="center center" style='background: #1976D2 !important'>
-        <section layout-align="start center" layout-fill flex>
-            <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
-                <i class="material-icons">menu</i>
+        <section layout-align="end center" layout-fill flex>
+            <md-button hide-gt-sm style='float: right' ng-click="vm.toggleItemsList()" aria-label="Menu">
+                <i class="material-icons" style='margin-top: 13px; font-size: 26px'>menu</i>
             </md-button>
         </section>
     </md-toolbar>
 
-    <md-content flex class="md-padding page-content">
+    <md-content flex class="md-padding page-content" style='background: #efefef'>
+
+        <md-progress-circular md-mode="indeterminate" ng-show='loading' style='position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 9999'></md-progress-circular>
+
         <div ui-view></div>
+
     </md-content>
 </div>

@@ -1,0 +1,47 @@
+<md-dialog aria-label="{{unidade.unidade_saude}}">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{unidade.unidade_saude}}</h2> 
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <h2>Endereço</h2>
+
+            <p>
+                <strong>Rua: </strong>
+                {{unidade.logradouro}}
+            </p>
+
+            <p>
+                <strong>Coordenador(a): </strong>
+                {{unidade.coordenador}}
+            </p> 
+
+            <p>
+                <strong>Bairro: </strong>
+                {{unidade.bairro}}
+            </p> 
+
+            <p>
+                <strong>Telefone: </strong>
+                {{unidade.telefone}}
+            </p> 
+
+            <p>
+                <strong>Descrição: </strong>
+                {{unidade.descricao}}
+            </p> 
+          
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click="fechar()">
+            Fechar
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>
